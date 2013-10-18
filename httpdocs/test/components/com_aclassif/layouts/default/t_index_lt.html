@@ -1,0 +1,85 @@
+<?php global $layout_tmpl, $layoutnb, $rndadstmdl, $rndadsmin, $msg, $alcl_ind_bnr3,$alcl_indadsltp, $alcl_hdrftrtp;  
+$tmpl_tp="index"; include($layout_tmpl[$layoutnb]['header']); ?>
+ 
+<div style='float:left;'> 
+<?php print_navigation_str(); ?>
+</div>
+<?php echo alcl_get_loc_list('1'); ?>
+
+<div style='clear:left;'></div>
+
+<?php if ($ct!="" or $schresinfo!=""){ ?>
+<div class='alcl_ind1'>
+<?php echo $categories[$ct][0] ?>
+<?php if ($schresinfo){ ?>
+<font class='alcl_schinf'> 
+<?php echo $schresinfo; ?>
+</font>
+<?php } ?>
+</div>
+<?php } ?>
+ 
+ <div class='alcl_ind5'>
+
+<?php include("t_menu_1.html");   ?>
+
+ <?php  echo  kw_searchf(); ?>
+<?php echo  prn_subcategories(); ?>
+</div>&nbsp;
+<div style='clear:both;'></div>  
+
+ <div class='alcl_ind2'>
+<font class="stfnt">
+<?php echo pages_next_prev(); ?>
+</font> 
+<span style='padding-left:100px;'><?php echo get_adsgal(); ?></span>
+</div>
+ 
+ 
+<?php
+global $hltinf, $hltnmbv;
+include_once("ads_ind.php");  
+$hltinf="<font style='FONT-SIZE: 11px; color: #774444;'>&nbsp; ".$msg['t_highlighted']."<br></font>";
+
+ 
+if ($hltadsf=='yes' and $_REQUEST['mfvrt']=="" and $_REQUEST['hltads']!="1") {$ads_rows=get_hltads(); 
+if (mysql_num_rows($ads_rows)>0){ $hltnmbv="1"; ?>
+<div class='alcl_ind3'>
+<font class="smallfnt"><?php echo $msg['t_Highlighted_ads']; ?></font> 
+<div class='alcl_ind7'>
+
+<?php include($layout_tmpl[$layoutnb]['ads_list']); ?> 
+
+</div>
+
+</div>
+
+
+<?php  $idadcol=0;}  } 
+
+?>
+
+<div class='alcl_ind2q'>
+<?php global $keywords_search_info, $kw_no_ads; if(!$kw_no_ads){
+echo "<b>$ads_count ".$msg['ads_match_your_query']."</b>  $keywords_search_info"; ?> 
+<?php echo subcat_options(); ?>  
+<?php } ?>
+</div>
+
+ <div class='alcl_ind3'>
+<?php echo msg_favorites(); ?> 
+
+<div class='alcl_ind7'>
+<?php $ads_rows=get_ads(); ?>
+
+<?php include($layout_tmpl[$layoutnb]['ads_list']); ?> 
+
+</div>
+</div>
+
+<div class='alcl_ind8'>
+<?php echo ads_pages_list(); ?>
+</div>
+
+<?php global $layout_tmpl, $layoutnb; include($layout_tmpl[$layoutnb]['footer']); ?>
+

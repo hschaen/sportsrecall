@@ -1,0 +1,178 @@
+<?php $tmpl_tp="details"; global $layout_tmpl, $layoutnb, $rndadstmdl, $rndadsmin,$msg; include($layout_tmpl[$layoutnb]['header']); ?>
+ 
+<?php include_once("simlr_ads.php"); ?>
+<?php jqphtgal(); ?>
+
+<div style='padding:0; margin:5px 0 15px 0;'>
+ <?php global $sturlvar; $_GET['ct']=$row['catname']; print_navigation_str(); ?>
+ </div>
+ 
+<div class='alcl_dt1'>
+&nbsp; <?php echo $row['title']; ?></font>
+ </div>
+
+<?php if($view_intad!=""){ echo "<div class='alcl_dt2'>{$view_intad}</div>";} ?>
+
+<?php if ($row['login']!=""){  
+echo "
+<div class='alcl_dt2'>
+".$msg['ad_posted_member']."  '".$row['login']."'
+</div>"; 
+} ?>
+
+<?php echo lrg_photo($idnum); ?>
+ 
+<?php echo "
+<div class='alcl_dt2'>
+<font class='smallg'>
+&nbsp;".$msg['adsid'].": </font> <font class='smallr'>
+$idnum</font> 
+&nbsp;
+<font class='smallg' >  ".$msg['date_posted_d'].": </font> <font class='smallr' >
+ $date_posted;</font>
+&nbsp;
+";
+if ($evnt_cat[$ct] !="yes"){
+echo "
+<font class='smallg' >".$msg['expire_date_d'].": </font>
+<font class='smallr' >$expire_date;</font>
+";
+}
+echo "<font class='smallfnt'> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  $det_cnt  </font>"; 
+
+global $spamlnkfl; if($spamlnkfl=="yes"){
+echo "&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<font   class='flspm' 
+style='color:#0000ee; TEXT-DECORATION: underline; cursor: pointer;' 
+OnClick=\"location.href='".alcl_index_url."md=flgspam&ct=$ct&id=$idnum'\";><nobr>".$msg['flag_as_spam']."</nobr></font>
+";
+}
+
+?>
+
+</div>
+ 
+<?php if(defined('alcl_fb_app') or defined('alcl_v_joomla')){$alcl_dt1_wdth="style='width:450px'"; echo "<div style='width:625px;'>";} 
+else{$alcl_dt1_wdth=""; echo "<div style='width:780px;'>"; } ?>
+<div class='alcl_dtcl1' <?php echo $alcl_dt1_wdth; ?> >
+<div class='alcl_dt3'>
+<table width='100%'  border=0  cellspacing=5 cellpadding=2>
+<?php
+foreach ( $cat_fields as $key => $value )
+{ 
+if($row[$key]==""){$row[$key]='--';}
+if ( ($cat_fields[$key][1] == '2' or $cat_fields[$key][1] == '12') and !($key=='initialad' and $row[$key]=='--') )
+{
+if ($row[$key]=='--'){$fld_dimd[$key]=""; $fld_dim[$key]="";}
+
+echo "
+<tr><td align='right' width='10%' valign='top'>
+<div style='text-align:right;' class='df3'>
+<nobr>".$cat_fields[$key][0].":</nobr></div>
+</td><td> 
+<font class='df4'>
+ ".$fld_dimd[$key].$row[$key].$fld_dim[$key]." &nbsp;</td></tr>
+ ";
+}
+}
+?>
+
+</table>
+</div>
+<div class='alcl_dt4'>
+<ul> <?php echo "<li style='padding:0px 0 7px 0;'> $contemail_info </li> $homepg_info "; ?> </ul>
+</div>
+
+ 
+<?php if ($addt_info!=""){echo "<div class='alcl_dt5'>1{$addt_info} </div>";} ?>
+
+<?php  if ($use_gl_map=='yes' and $row['addrmap']!="--")
+{echo "<div class='alcl_dt5'>".dt_map($row['addrmap'])."</div>";} ?>
+ 
+<font class='df5'>
+<?php echo $all_ads_user; ?>
+</font>
+<?php echo search_similiar_ads($row); ?>
+ 
+</div>
+
+<div class='alcl_dtcl2' style='position:relative;'>
+<?php js_lrimg(); ?>
+<div id="pht1">
+<?php echo print_photos($idnum, $row); ?>
+</div>
+</div>
+<div style='clear:both;'></div>
+</div>
+
+<?php echo print_multimed($idnum); ?>
+
+<?php global $fb_intrfc; if($fb_intrfc=="yes") {echo fb_detp($row);} ?>
+
+<?php if ($row['adcommkey']!=1){echo adsvtrform($row);} ?>
+<?php echo $repl_cmminf; ?>
+<?php
+if ($row['adcommkey']!=1){
+echo "
+<div class='alcl_dt5' style='margin-top:20px;'> <b> ".print_fvrt_dtl()." </b></div>
+";
+}
+?>
+
+<div class='alcl_dt5'>
+<?php 
+global $lgneditd; if($lgneditd=="yes"){ 
+if($row['login']==gt_usrname() and $row['login']!=""){ 
+echo " <a href='".alcl_link("ct=$ct&md=editform&ed_id=$idnum&edit_delete=edit")."' ><b>".$msg['t_Edit_Ad']."</b></a>   &nbsp; &nbsp;  
+ <a href='".alcl_link("ct=$ct&md=editform&ed_id=$idnum&edit_delete=delete")."' ><b>".$msg['t_Delete_Ad']."</b></a>  &nbsp;  &nbsp;  &nbsp;"; 
+}}
+else {
+echo "<a href='".alcl_link("ct=$ct&md=editlogin&id=$idnum")."' >".$msg['t_Edit_Ad']."</a> &nbsp;  &nbsp;  &nbsp;"; 
+}
+?>
+<?php 
+if ($row['adcommkey']!=1 and $hltadsinfo!="" ){
+echo "
+ $hltadsinfo  
+";
+}
+?>
+</div>
+
+<?php global $cnt_htl_det, $hltadsf; if ($hltadsf=='yes') {$hlt_rows=get_hltads();
+if (mysql_num_rows($hlt_rows)>0 and $cnt_htl_det>0){  
+include_once('ads_ind.php');
+global $cat_fields, $photos_count, $ct, $categories,   $urlclscrpt,
+$previewphoto_url, $previewphoto_path, $prphotolimits, $pr_lim_height, $pr_lim_width,
+$prwph_layer, $colr_hltads, $capt_hltads, $prphscr,$prphscrwdth,$prwdly, $photo_path,
+$lnkttlfl, $msg, $idadcol, $colspn, $tbclhlads, $coltblayer,
+$check_rate, $ad_date, $ad_fields, $idnum, $ad_comment, $ad_title,  $fld_dim, $fld_dimd,
+$check_photos, $categ_name, $lr_fields, $fields_layer, $vrwcomm;
+
+?> 
+
+<div class='alcl_dt5'>
+<font class='smallfnt'><?php echo $msg['t_Highlighted_ads']; ?></font>
+
+<?php   $ads_rows=$hlt_rows;  include($templ['ads_list']); ?>
+</div>
+<?php } } ?>
+
+<?php if(!defined('alcl_lite_layout')){ ?>
+ 
+<?php js_rand_ads(700,65,0,$rndadsmin);  ?>
+ 
+<?php } ?>
+
+<div class='alcl_dt5' style='padding-top:15px;'>
+<font class='smallfnt'>
+<a href="javascript:history.back();"><?php echo $msg['t_Go_Back']; ?></a>
+ &nbsp; &nbsp;  
+ <a href='#' onClick='self.close()'><?php echo $msg['close_window_d']; ?></a> 
+ &nbsp; &nbsp;    
+</font>
+</div>
+  
+<?php if(defined('alcl_v_standalone') and !defined('alcl_lite_layout')){echo $dtl_rightcol;} ?>
+
+<?php global $layout_tmpl, $layoutnb; include($layout_tmpl[$layoutnb]['footer']); ?>

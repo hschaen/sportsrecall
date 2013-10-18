@@ -1,0 +1,20 @@
+<?php global $fb_intrfc, $_REQUEST, $fb_act_domain, $fb_commnthref; if($fb_intrfc=="yes"){ ?>
+ 
+<div style="padding:15px 15px 15px 15px">
+<font style="FONT-SIZE: 12px; color: #999999; font-weight: bold;">
+Facebook social interface:
+</font>
+<div style='padding: 10px;'></div>
+<font class='smallb'>You can click Like button and place your comment about this classifieds:</font><br>
+<div style='padding: 10px;'></div>
+<div class="fb-like" data-href="<?php echo $fb_commnthref; ?>"  data-width="650" data-show-faces="true" data-send="true"></div>
+<div style='padding: 10px;'></div>
+<div class="fb-comments" 
+data-href="<?php echo $fb_commnthref; ?>" 
+data-num-posts="10" data-width="650"></div>
+ 
+<div style='padding: 3px;'></div>
+<div class="fb-activity" data-site="<?php echo $fb_act_domain; ?>"  data-width="650" data-height="300" data-header="true" recommendations="true"></div>
+<div style='padding: 10px;'></div>
+</div>
+<?php } ?>

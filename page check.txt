@@ -1,0 +1,21 @@
+TENNIS
+
+mens - winning shots
+womens - forehands
+	-winning shots
+	
+BOXING
+
+mens
+	- entrance
+	
+womens
+	- none are working here
+
+	
+GOLF
+
+mens
+	all good
+womens
+	all good

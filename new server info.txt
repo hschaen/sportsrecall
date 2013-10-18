@@ -1,0 +1,36 @@
+log in URL (ftp)
+
+https://208.109.217.196:8443/
+
+user name is tonysports999
+password is Newmexico4u!  / nyse24!
+
+Control Panel (Plesk)
+
+username is tnyse@yahoo.com
+password is Sports888!1
+
+ 
+ database:
+ 
+ 
+janicesports4u_001
+tiznilla3013 / mHAL1c91b68aSue- deleted
+
+---
+dbname - sportsrecalldb
+username - sradmin
+password - SportsRecall123!
+
+admin / nyserecall
+
+
+USERS:
+
+admin / nyse24
+
+hschaen / bigschaen01
+
+janice / jrecall01
+
+sheryl / sherecall01

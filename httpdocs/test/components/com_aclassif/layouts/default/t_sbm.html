@@ -1,0 +1,17 @@
+<?php $tmpl_tp="sbm"; global $layout_tmpl, $layoutnb; include($layout_tmpl[$layoutnb]['header']); ?>
+
+<table width="100%" border="0" cellpadding="25" cellspacing="0" >
+<tr>
+<td valign="top" >
+
+<?php echo $thtml_top; ?>
+
+<?php if (($ppactv=="yes") and  ($moderating=='yes') and  ($md!='edit')){include("pp_subm.php");}  ?>
+
+<?php echo $thtml; ?>
+
+</td>
+</tr>
+</table>
+
+<?php  global $layout_tmpl, $layoutnb; include($layout_tmpl[$layoutnb]['footer']); ?>

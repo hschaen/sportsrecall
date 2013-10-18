@@ -1,0 +1,37 @@
+
+<?php global $javastl, $ht_header, $ht_footer, $ht_leftcol, $dtl_rightcol, 
+$categories, $titleclpg, $row,$ct, $indhdrcvl; 
+if(defined('alcl_v_joomla') and defined('_JEXEC')){
+if ($tmpl_tp=="msg" or $tmpl_tp=="sbm"){$alcl_title_value1=$titleclpg;}
+if ($tmpl_tp=="index") {$alcl_title_value1=$categories[$ct][0];}
+if ($tmpl_tp=="top") {$alcl_title_value1=$titleclpg;  }
+if ($tmpl_tp=="details") {$alcl_title_value1=$row['title'];}
+if (method_exists('JFactory', 'getDocument')) {
+$document=& JFactory::getDocument(); $document->setTitle($alcl_title_value1);
+} 
+}
+?>
+
+<link href="<?php echo alcl_layout_css_url ; ?>" rel="stylesheet" type="text/css">
+<?php jqueryld(); ?>
+
+<div class='alcl_jlayout'> 
+Hi.
+<?php echo $ht_header; ?>
+
+</div>
+<?php 
+if ($indhdrcvl=="1"){
+if ($use_gl_map=='yes') {echo getmapjsp();}  
+ echo print_layerjavas();
+} 
+?>
+<?php global $fb_intrfc, $fb_js_header;  
+if($fb_intrfc=="yes"){echo "<html "; fb_htmlopt(); echo "> ".$fb_js_header;} 
+global $mbac_addad; $alcl_j_usr_name=gt_usrname(); 
+if ($mbac_addad=="m" and $alcl_j_usr_name!=""){ echo " <div style='padding:5px 5px 8px 15px; font-size:12px;'>
+".$msg['Welcome_m']." $alcl_j_usr_name ! &nbsp; &nbsp; &nbsp;  
+<a href='".alcl_index_url."md=browse&mblogin={$alcl_j_usr_name}&visunvis=1' >
+".$msg['Your_ads_m']."</a></div>";}
+?>
+ 

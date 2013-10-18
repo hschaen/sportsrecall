@@ -1,0 +1,32 @@
+Main stuff /OVERALL:
+
+finish with nhl - articles + menu items
+sports front page modules
+	what do you think - poll ( not sure if we need a different one per sport )
+	related topics  - ( placeholder )
+	search by name - search thru category for a name
+college page modules
+	related / categories with working links
+add the searchs to each sport with classifieds + return pages / templates
+add the user upload function in modules
+the paypal return page issue ( not sure how essential this is what do you think? )
+point all needed items to current db location
+
+spoof the urls / permalinks ( we're going to have to get it ready to look like its on the root )
+
+CLASSIFIEDS:  
+
+remove left side column in template for more room
+layout with 3 column look
+add athlete celeb list (just got this in , gotta figure out how to import to almond)
+
+TEMPLATE/STYLE:
+
+simplify/consolidate
+make responsive menu / center
+one font 
+style the cb/almond pages to match up
+new header
+new user upload images
+
+
